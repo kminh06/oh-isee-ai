@@ -53,15 +53,25 @@ interface Coach {
 
 export default function SecondRow() {
   // const [selectedCoach, setSelectedCoach] = useState<Coach | null>(null)
+  const [clicked, setClicked] = useState(false)
 
   const handleScheduleSession = (coach: Coach) => {
     // setSelectedCoach(coach)
   }
 
-  async function handleSubmitForm(
-    e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
-  ) {
-    e.preventDefault()
+  async function handleSubmitForm(id: String, url: String) {
+    setClicked(true)
+    const form = document.forms[id]
+
+    const formData = new FormData(form)
+    console.log(formData)
+    const response = await fetch(url, {
+      method: 'POST',
+      body: formData,
+    })
+
+    alert('Cảm ơn bạn đã gửi!')
+    setClicked(false)
   }
 
   return (
@@ -101,32 +111,70 @@ export default function SecondRow() {
                             liên hệ lại với bạn kèm theo xác nhận.{' '}
                           </DialogDescription>
                         </DialogHeader>
-                        <form onSubmit={handleSubmitForm} className='space-y-4'>
-                          <div className='space-y-2'>
+                        <form
+                          id='schedule-form'
+                          onSubmit={(e) => {
+                            e.preventDefault()
+                            handleSubmitForm(
+                              'schedule-form',
+                              process.env.NEXT_PUBLIC_SCRIPT_URL_SCHEDULING
+                            )
+                          }}
+                          className='space-y-4'
+                        >
+                          <Input
+                            name='coach'
+                            className='hidden'
+                            value={coach.name}
+                          />
+                          <div className='space-y-1'>
                             <Label htmlFor='name'>Tên</Label>
-                            <Input id='name' placeholder='Tên' required />
+                            <Input
+                              name='name'
+                              id='name'
+                              placeholder='Tên'
+                              required
+                            />
                           </div>
-                          <div className='space-y-2'>
+                          <div className='space-y-1'>
                             <Label htmlFor='email'>Email</Label>
                             <Input
                               id='email'
                               type='email'
+                              name='email'
                               placeholder='m@example.com'
                               required
                             />
                           </div>
-                          <div className='space-y-2'>
+                          <div className='space-y-1'>
+                            <Label htmlFor='phone'>Phone</Label>
+                            <Input
+                              id='phone'
+                              type='tel'
+                              name='phone'
+                              placeholder='09XX-XXX-XXX'
+                              required
+                            />
+                          </div>
+                          <div className='space-y-1'>
                             <Label htmlFor='preferred-time'>
                               Thời gian phù hợp
                             </Label>
                             <Input
                               id='preferred-time'
                               type='datetime-local'
+                              name='preferred-time'
                               required
                             />
                           </div>
                           <DialogFooter>
-                            <Button type='submit'>Xác nhận</Button>
+                            <Button
+                              className='mt-4'
+                              disabled={clicked}
+                              type='submit'
+                            >
+                              Xác nhận
+                            </Button>
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -143,16 +191,27 @@ export default function SecondRow() {
           <CardTitle>Góp ý của bạn</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className='space-y-4'>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              handleSubmitForm(
+                'feedback-form',
+                process.env.NEXT_PUBLIC_SCRIPT_URL_FEEDBACK
+              )
+            }}
+            className='space-y-4'
+            id='feedback-form'
+          >
             <div className='space-y-2'>
               {/* <Label htmlFor='feedback'>Góp ý của bạn</Label> */}
               <Textarea
                 id='feedback'
+                name='feedback'
                 placeholder='Oh, i see! có thể làm gì để cải thiện?'
                 className='h-[150px]'
               />
             </div>
-            <Button type='submit' className='w-full'>
+            <Button disabled={clicked} type='submit' className='w-full'>
               Gửi
             </Button>
           </form>

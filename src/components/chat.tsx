@@ -30,7 +30,10 @@ export default function Chat() {
 
   useEffect(() => {
     if (messages.length === 0) return
-    bottom.current?.scrollIntoView()
+    bottom.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    })
   }, [messages])
 
   return (
@@ -39,8 +42,8 @@ export default function Chat() {
         <CardTitle>Chat với Oh, i see!</CardTitle>
       </CardHeader>
       <CardContent className='p-4'>
-        <ScrollArea className='h-[400px] w-full'>
-          <div className='pr-4'>
+        <div className='flex w-full relative'>
+          <ScrollArea className='pr-4 h-[400px] absolute bottom-0 overflow-auto flex flex-col justify-end'>
             <div className={`mb-4 flex w-full gap-2 justify-start`}>
               <img
                 src='/logo-square.svg'
@@ -81,8 +84,8 @@ export default function Chat() {
               </div>
             ))}
             <div ref={bottom}></div>
-          </div>
-        </ScrollArea>
+          </ScrollArea>
+        </div>
       </CardContent>
       <CardFooter className='p-4 flex flex-col'>
         <form

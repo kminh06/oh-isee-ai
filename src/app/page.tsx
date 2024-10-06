@@ -17,7 +17,7 @@ export default function Page() {
       <main className='flex flex-grow w-full mx-auto flex-col px-4 sm:px-8 max-w-5xl gap-4'>
         <Chat />
         <SecondRow />
-        <p className='text-center text-slate-700 dark:text-slate-200 leading-relaxed p-8 sm:p-16 mx-auto text-sm'>
+        <p className='text-center text-slate-700 dark:text-slate-200 leading-relaxed pt-4 p-8 sm:pt-12 sm:p-16 mx-auto text-sm'>
           Oh, i see! là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn
           phá vỡ giới hạn tư duy và tìm thấy sự kết nối sâu sắc với bản thân và
           thế giới xung quanh. Với sự hướng dẫn từ các huấn luyện viên chuyên

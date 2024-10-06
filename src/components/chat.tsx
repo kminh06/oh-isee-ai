@@ -52,8 +52,8 @@ export default function Chat() {
                 className={`inline-block py-2 px-4 text-sm rounded-lg
                     bg-slate-200 dark:bg-slate-800 text-gray-800 dark:text-slate-200`}
               >
-                Xin chào! Mình là Oh, i see!, huấn luyện viên sức khỏe tinh thần
-                AI của bạn. Mình có thể hỗ trợ bạn như thế nào?
+                Xin chào! Tôi là Oh, i see!, huấn luyện viên sức khỏe tinh thần
+                AI của bạn. Tôi có thể hỗ trợ bạn như thế nào?
               </span>
             </div>
             {messages.map((message, index) => (

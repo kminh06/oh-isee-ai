@@ -8,8 +8,11 @@ import { useChat } from 'ai/react'
 export default function Page() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='flex justify-center p-4 sm:p-8'>
+      <header className='flex max-w-5xl mx-auto w-full relative justify-center p-4 sm:p-8'>
         <img src='/logo-full.svg' alt='logo' className='h-8 sm:h-12' />
+        <div className='absolute right-4 sm:right-8'>
+          <ThemeToggle />
+        </div>
       </header>
       <main className='flex flex-grow w-full mx-auto flex-col px-4 sm:px-8 max-w-5xl gap-4'>
         <Chat />
@@ -26,9 +29,6 @@ export default function Page() {
       </main>
       <footer className='w-full relative dark:bg-slate-950 border-t text-xs text-slate-800 dark:text-sky-500 text-center border-slate-200 dark:border-slate-800 p-8'>
         &copy; 2024 Oh, i see!. All rights reserved.
-        <div className='absolute right-4 bottom-6'>
-          <ThemeToggle />
-        </div>
       </footer>
     </div>
   )

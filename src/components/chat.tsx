@@ -13,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ThemeToggle } from './ui/theme-toggle'
 import { Textarea } from './ui/textarea'
 
 interface Message {
@@ -31,7 +30,6 @@ export default function Chat() {
   useEffect(() => {
     if (messages.length === 0) return
     bottom.current?.scrollIntoView({
-      behavior: 'smooth',
       block: 'end',
     })
   }, [messages])

@@ -39,7 +39,7 @@ export default function Chat() {
       <CardHeader className='pb-2'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
       </CardHeader>
-      <CardContent className='p-4 pr-0'>
+      <CardContent className='p-4 pb-0 pr-0'>
         <div className='flex w-full relative'>
           <ScrollArea className='pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
             <div className={`mb-6 flex w-full gap-2 justify-start`}>
@@ -85,7 +85,7 @@ export default function Chat() {
           </ScrollArea>
         </div>
       </CardContent>
-      <CardFooter className='p-4 flex flex-col'>
+      <CardFooter className='p-4 pt-0 flex flex-col'>
         <form
           className='w-full  rounded-md relative flex gap-2'
           onSubmit={handleSubmit}

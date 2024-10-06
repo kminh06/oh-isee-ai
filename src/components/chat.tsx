@@ -26,22 +26,9 @@ export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat()
   const bottom = useRef<HTMLDivElement>(null)
-  const [texts, setTexts] = useState<Message[]>([
-    {
-      content: 'Hello, I am Oh, i see! How can I help you today?',
-      role: 'assistant',
-      id: '1',
-      createdAt: new Date(),
-    },
-  ])
 
   useEffect(() => {
     bottom.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages])
-
-  useEffect(() => {
-    setTexts(messages)
-    console.log(messages)
   }, [messages])
 
   return (

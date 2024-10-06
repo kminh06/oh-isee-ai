@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,7 +14,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Send } from 'lucide-react'
 
 const coaches = [
   {
@@ -59,10 +52,10 @@ interface Coach {
 }
 
 export default function SecondRow() {
-  const [selectedCoach, setSelectedCoach] = useState<Coach | null>(null)
+  // const [selectedCoach, setSelectedCoach] = useState<Coach | null>(null)
 
   const handleScheduleSession = (coach: Coach) => {
-    setSelectedCoach(coach)
+    // setSelectedCoach(coach)
   }
 
   const handleSubmitForm = (
@@ -71,7 +64,7 @@ export default function SecondRow() {
     e.preventDefault()
     // Here you would typically handle the form submission
     console.log('Form submitted')
-    setSelectedCoach(null)
+    // setSelectedCoach(null)
   }
 
   return (

@@ -46,20 +46,15 @@ const coaches = [
   },
 ]
 
-interface Coach {
-  name: string
-  specialty: string
-}
-
 export default function SecondRow() {
   // const [selectedCoach, setSelectedCoach] = useState<Coach | null>(null)
   const [clicked, setClicked] = useState(false)
 
-  const handleScheduleSession = (coach: Coach) => {
+  const handleScheduleSession = (coach) => {
     // setSelectedCoach(coach)
   }
 
-  async function handleSubmitForm(id, url: string) {
+  async function handleSubmitForm(id, url) {
     setClicked(true)
     const form = document.forms[id]
 

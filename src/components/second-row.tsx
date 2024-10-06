@@ -59,7 +59,7 @@ export default function SecondRow() {
     // setSelectedCoach(coach)
   }
 
-  async function handleSubmitForm(id: String, url: String) {
+  async function handleSubmitForm(id: string, url: string) {
     setClicked(true)
     const form = document.forms[id]
 

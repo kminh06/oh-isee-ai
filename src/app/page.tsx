@@ -8,13 +8,13 @@ import { useChat } from 'ai/react'
 export default function Page() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='flex justify-center p-8'>
-        <img src='/logo-full.svg' alt='logo' className='h-12' />
+      <header className='flex justify-center p-4 sm:p-8'>
+        <img src='/logo-full.svg' alt='logo' className='h-8 sm:h-12' />
       </header>
-      <main className='flex flex-grow w-full mx-auto flex-col px-8 max-w-5xl gap-4'>
+      <main className='flex flex-grow w-full mx-auto flex-col px-4 sm:px-8 max-w-5xl gap-4'>
         <Chat />
         <SecondRow />
-        <p className='text-center text-slate-700 dark:text-slate-200 leading-relaxed px-16 mx-auto text-sm my-16'>
+        <p className='text-center text-slate-700 dark:text-slate-200 leading-relaxed p-8 sm:p-16 mx-auto text-sm'>
           Oh, I see là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn
           phá vỡ giới hạn tư duy và tìm thấy sự kết nối sâu sắc với bản thân và
           thế giới xung quanh. Với sự hướng dẫn từ các huấn luyện viên chuyên

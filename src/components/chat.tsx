@@ -28,6 +28,7 @@ export default function Chat() {
   const bottom = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (messages.length === 0) return
     bottom.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 

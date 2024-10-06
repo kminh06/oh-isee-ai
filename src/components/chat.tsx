@@ -39,7 +39,7 @@ export default function Chat() {
       <CardHeader className='pb-2'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
       </CardHeader>
-      <CardContent className='p-4'>
+      <CardContent className='p-4 pr-0'>
         <div className='flex w-full relative'>
           <ScrollArea className='pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
             <div className={`mb-4 flex w-full gap-2 justify-start`}>

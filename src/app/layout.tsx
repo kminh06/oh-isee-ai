@@ -14,6 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        <link rel='shortcut icon' href='/logo-square.svg' type='svg' />
+      </head>
       <body
         className={
           'font-sans antialiased text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900/80'

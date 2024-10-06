@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ThemeToggle } from './ui/theme-toggle'
+import { Textarea } from './ui/textarea'
 
 interface Message {
   content: string
@@ -29,7 +30,7 @@ export default function Chat() {
 
   useEffect(() => {
     if (messages.length === 0) return
-    bottom.current?.scrollIntoView({ behavior: 'smooth' })
+    bottom.current?.scrollIntoView()
   }, [messages])
 
   return (
@@ -88,12 +89,18 @@ export default function Chat() {
           className='w-full  rounded-md relative flex gap-2'
           onSubmit={handleSubmit}
         >
-          <Input
-            className='outline-none bg-transparent pl-6 pr-4 pt-6 pb-12 w-full text-sm'
+          <Textarea
+            className='outline-none resize-none overflow-hidden bg-transparent pl-4 pr-16 pt-4 pb-12 w-full text-sm'
             value={input}
             placeholder='Suy nghĩ của bạn...'
             onChange={handleInputChange}
-          ></Input>
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                handleSubmit(e)
+              }
+            }}
+          ></Textarea>
           <button
             className='p-2 bg-slate-200 dark:bg-slate-800 h-fit mt-4 rounded-md absolute right-4'
             type='submit'

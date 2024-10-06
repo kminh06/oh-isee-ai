@@ -58,13 +58,10 @@ export default function SecondRow() {
     // setSelectedCoach(coach)
   }
 
-  const handleSubmitForm = (
+  async function handleSubmitForm(
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
-  ) => {
+  ) {
     e.preventDefault()
-    // Here you would typically handle the form submission
-    console.log('Form submitted')
-    // setSelectedCoach(null)
   }
 
   return (
@@ -77,13 +74,15 @@ export default function SecondRow() {
           <ScrollArea className='w-full'>
             <div className='flex space-x-4 pb-4 overflow-x-auto'>
               {coaches.map((coach) => (
-                <Card key={coaches.indexOf(coach)} className='inline-block'>
-                  <CardHeader>
+                <div
+                  key={coaches.indexOf(coach)}
+                  className='inline-block px-4 py-4 pt-3 border dark:border-slate-800 border-slate-200 rounded-lg space-y-4'
+                >
+                  <div className='space-y-1'>
                     <CardTitle className='text-sm'>{coach.name}</CardTitle>
-                    <p className='text-xs'>{coach.specialty}</p>
-                  </CardHeader>
-                  <CardContent className='w-40 flex'>
-                    <span></span>
+                    <p className='text-xs opacity-70'>{coach.specialty}</p>
+                  </div>
+                  <div className='w-40 flex'>
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button
@@ -132,8 +131,8 @@ export default function SecondRow() {
                         </form>
                       </DialogContent>
                     </Dialog>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </ScrollArea>

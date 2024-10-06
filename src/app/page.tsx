@@ -25,7 +25,7 @@ export default function Page() {
         </p>
       </main>
       <footer className='w-full relative dark:bg-slate-950 border-t text-xs text-slate-800 dark:text-sky-500 text-center border-slate-200 dark:border-slate-800 p-8'>
-        &copy; 2024 Oh, I See!. All rights reserved.
+        &copy; 2024 Oh, i see!. All rights reserved.
         <div className='absolute right-4 bottom-6'>
           <ThemeToggle />
         </div>

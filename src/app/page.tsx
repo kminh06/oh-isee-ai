@@ -15,10 +15,10 @@ export default function Page() {
         <Chat />
         <SecondRow />
         <p className='text-center text-slate-700 dark:text-slate-200 leading-relaxed p-8 sm:p-16 mx-auto text-sm'>
-          Oh, I see là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn
+          Oh, i see! là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn
           phá vỡ giới hạn tư duy và tìm thấy sự kết nối sâu sắc với bản thân và
           thế giới xung quanh. Với sự hướng dẫn từ các huấn luyện viên chuyên
-          nghiệp, Oh, I see hỗ trợ bạn quản lý căng thẳng, cải thiện mối quan
+          nghiệp, Oh, i see! hỗ trợ bạn quản lý căng thẳng, cải thiện mối quan
           hệ, và xây dựng lối sống hạnh phúc. Thử nghiệm phương pháp độc đáo này
           để trải nghiệm sự thay đổi tích cực trong cuộc sống, và đừng quên giới
           thiệu cho bạn bè để cùng nhau phát triển!

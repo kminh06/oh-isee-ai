@@ -101,6 +101,7 @@ export default function Chat() {
                 handleSubmit(e)
               }
             }}
+            disabled={isLoading}
           ></Textarea>
           <button
             className='p-2 bg-slate-200 dark:bg-slate-800 h-fit mt-4 rounded-md absolute right-4'

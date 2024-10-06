@@ -67,6 +67,7 @@ export default function SecondRow() {
 
     alert('Cảm ơn bạn đã gửi!')
     setClicked(false)
+    form.reset()
   }
 
   return (

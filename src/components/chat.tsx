@@ -43,7 +43,7 @@ export default function Chat() {
       </CardHeader>
       <CardContent className='p-4'>
         <div className='flex w-full relative'>
-          <ScrollArea className='pr-4 h-[400px] absolute bottom-0 overflow-auto flex flex-col justify-end'>
+          <ScrollArea className='pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
             <div className={`mb-4 flex w-full gap-2 justify-start`}>
               <img
                 src='/logo-square.svg'

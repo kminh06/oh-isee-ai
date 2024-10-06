@@ -42,14 +42,14 @@ export default function Chat() {
       <CardContent className='p-4 pr-0'>
         <div className='flex w-full relative'>
           <ScrollArea className='pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
-            <div className={`mb-4 flex w-full gap-2 justify-start`}>
+            <div className={`mb-6 flex w-full gap-2 justify-start`}>
               <img
                 src='/logo-square.svg'
                 alt='avatar'
                 className='h-5 w-5 relative top-1'
               />
               <span
-                className={`inline-block py-2 px-4 text-sm rounded-lg
+                className={`inline-block py-3 px-4 text-sm rounded-lg
                     bg-slate-200 dark:bg-slate-800 text-gray-800 dark:text-slate-200`}
               >
                 Xin chào! Tôi là Oh, i see!, huấn luyện viên sức khỏe tinh thần
@@ -59,7 +59,7 @@ export default function Chat() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`mb-4 flex w-full gap-2 ${
+                className={`mb-6 flex w-full gap-2 ${
                   message.role === 'user' ? ' justify-end' : 'justify-start'
                 }`}
               >
@@ -71,7 +71,7 @@ export default function Chat() {
                   />
                 )}
                 <span
-                  className={`inline-block py-2 px-4 text-sm rounded-lg ${
+                  className={`inline-block py-3 px-4 text-sm rounded-lg ${
                     message.role === 'user'
                       ? 'bg-sky-500 dark:bg-sky-600 text-white'
                       : 'bg-slate-200 dark:bg-slate-800 text-gray-800 dark:text-slate-200'

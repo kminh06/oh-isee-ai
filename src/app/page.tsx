@@ -3,13 +3,21 @@
 import Chat from '@/components/chat'
 import SecondRow from '@/components/second-row'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import { useChat } from 'ai/react'
+import { useTheme } from 'next-themes'
 
 export default function Page() {
+  const { theme } = useTheme()
+
   return (
     <div className='flex flex-col min-h-screen'>
       <header className='flex max-w-5xl mx-auto w-full relative justify-center p-4 sm:p-8'>
-        <img src='/logo-full.svg' alt='logo' className='h-8 sm:h-12' />
+        <img
+          src={
+            theme === 'dark' ? '/logo-full/Dark.svg' : '/logo-full/Light.svg'
+          }
+          alt='logo'
+          className='h-8 sm:h-12'
+        />
         <div className='absolute right-4 sm:right-8'>
           <ThemeToggle />
         </div>

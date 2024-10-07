@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Textarea } from './ui/textarea'
+import IncrementalWordRender from './incremental-words'
 
 interface Message {
   content: string
@@ -34,14 +35,20 @@ export default function Chat() {
     })
   }, [messages])
 
+  useEffect(() => {
+    if (!isLoading) {
+      document.getElementById('chat-input')?.focus()
+    }
+  }, [isLoading])
+
   return (
-    <Card className='col-span-1'>
-      <CardHeader className='pb-2'>
+    <Card className='col-span-1 w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow'>
+      <CardHeader className='pb-2 hidden sm:block'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
       </CardHeader>
-      <CardContent className='p-4 pb-0 pr-0'>
+      <CardContent className='p-0 pt-4 sm:p-4 sm:pb-0 sm:pr-0'>
         <div className='flex w-full relative'>
-          <ScrollArea className='pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
+          <ScrollArea className='pr-3 sm:pr-4 h-[400px] w-full absolute bottom-0 overflow-auto flex flex-col justify-end'>
             <div className={`mb-6 flex w-full gap-2 justify-start`}>
               <img
                 src='/logo-square.svg'
@@ -52,8 +59,11 @@ export default function Chat() {
                 className={`inline-block py-3 px-4 text-sm rounded-lg
                     bg-slate-200 dark:bg-slate-800 text-gray-800 dark:text-slate-200`}
               >
-                Xin chào! Tôi là Oh, i see!, huấn luyện viên sức khỏe tinh thần
-                AI của bạn. Tôi có thể hỗ trợ bạn như thế nào?
+                <IncrementalWordRender
+                  sentence={
+                    'Xin chào! Tôi là Oh, i see!, huấn luyện viên sức khỏe tinh thần AI của bạn. Tôi có thể hỗ trợ bạn như thế nào?'
+                  }
+                />
               </span>
             </div>
             {messages.map((message, index) => (
@@ -85,7 +95,7 @@ export default function Chat() {
           </ScrollArea>
         </div>
       </CardContent>
-      <CardFooter className='p-4 pt-0 flex flex-col'>
+      <CardFooter className='pb-4 px-0 sm:px-4 pt-2 flex flex-col'>
         <form
           className='w-full  rounded-md relative flex gap-2'
           onSubmit={handleSubmit}
@@ -93,6 +103,7 @@ export default function Chat() {
           <Textarea
             className='outline-none resize-none overflow-hidden bg-transparent pl-4 pr-16 pt-4 pb-12 w-full text-sm'
             value={input}
+            id='chat-input'
             placeholder='Suy nghĩ của bạn...'
             onChange={handleInputChange}
             onKeyDown={(e) => {

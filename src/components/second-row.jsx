@@ -57,6 +57,8 @@ export default function SecondRow() {
   async function handleSubmitForm(id, url) {
     setClicked(true)
     const form = document.forms[id]
+    const time = new Date().toLocaleString()
+    document.getElementById('time').value = time
 
     const formData = new FormData(form)
     console.log(formData)
@@ -123,17 +125,30 @@ export default function SecondRow() {
                             className='hidden'
                             value={coach.name}
                           />
-                          <div className='space-y-1'>
-                            <Label htmlFor='name'>Tên</Label>
-                            <Input
-                              name='name'
-                              id='name'
-                              placeholder='Tên'
-                              required
-                            />
+                          <div className='flex flex-row gap-2'>
+                            <div className='space-y-1'>
+                              <Label htmlFor='name'>Tên*</Label>
+                              <Input
+                                name='name'
+                                id='name'
+                                placeholder='Tên'
+                                required
+                              />
+                            </div>
+                            <div></div>
+                            <div className='space-y-1'>
+                              <Label htmlFor='phone'>Số điện thoại*</Label>
+                              <Input
+                                id='phone'
+                                type='tel'
+                                name='phone'
+                                placeholder='09XX-XXX-XXX'
+                                required
+                              />
+                            </div>
                           </div>
                           <div className='space-y-1'>
-                            <Label htmlFor='email'>Email</Label>
+                            <Label htmlFor='email'>Email*</Label>
                             <Input
                               id='email'
                               type='email'
@@ -143,18 +158,8 @@ export default function SecondRow() {
                             />
                           </div>
                           <div className='space-y-1'>
-                            <Label htmlFor='phone'>Phone</Label>
-                            <Input
-                              id='phone'
-                              type='tel'
-                              name='phone'
-                              placeholder='09XX-XXX-XXX'
-                              required
-                            />
-                          </div>
-                          <div className='space-y-1'>
                             <Label htmlFor='preferred-time'>
-                              Thời gian phù hợp
+                              Thời gian phù hợp*
                             </Label>
                             <Input
                               id='preferred-time'
@@ -162,6 +167,12 @@ export default function SecondRow() {
                               name='preferred-time'
                               required
                             />
+                          </div>
+                          <div className='space-y-1'>
+                            <Label htmlFor='notes'>
+                              Thông tin về bạn và nhu cầu của bạn
+                            </Label>
+                            <Textarea id='notes' name='notes' />
                           </div>
                           <DialogFooter>
                             <Button
@@ -198,7 +209,13 @@ export default function SecondRow() {
             className='space-y-4'
             id='feedback-form'
           >
-            <div className='space-y-2'>
+            <div className=''>
+              <Input
+                id='time'
+                name='time'
+                // type='datetime-local'
+                className='hidden'
+              ></Input>
               {/* <Label htmlFor='feedback'>Góp ý của bạn</Label> */}
               <Textarea
                 id='feedback'
@@ -207,7 +224,7 @@ export default function SecondRow() {
                 className='h-[150px]'
               />
             </div>
-            <Button disabled={clicked} type='submit' className='w-full'>
+            <Button disabled={clicked} type='submit' className='w-full mt-2'>
               Gửi
             </Button>
           </form>

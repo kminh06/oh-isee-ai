@@ -16,6 +16,10 @@ export default function RootLayout({
     <html lang='en'>
       <head>
         <link rel='shortcut icon' href='/logo-square.svg' type='svg' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, maximum-scale=1'
+        />
       </head>
       <body
         className={

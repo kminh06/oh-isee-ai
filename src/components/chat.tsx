@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Textarea } from './ui/textarea'
 import IncrementalWordRender from './incremental-words'
+import { isMobile } from 'react-device-detect'
 
 interface Message {
   content: string
@@ -36,7 +37,7 @@ export default function Chat() {
   }, [messages])
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && !isMobile) {
       document.getElementById('chat-input')?.focus()
     }
   }, [isLoading])

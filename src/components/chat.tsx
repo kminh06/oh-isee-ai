@@ -16,6 +16,7 @@ import {
 import { Textarea } from './ui/textarea'
 import IncrementalWordRender from './incremental-words'
 import { isMobile } from 'react-device-detect'
+import MarkDown from 'react-markdown'
 
 interface Message {
   content: string
@@ -88,7 +89,8 @@ export default function Chat() {
                       : 'bg-slate-200 dark:bg-slate-800 text-gray-800 dark:text-slate-200'
                   }`}
                 >
-                  {message.content}
+                  <MarkDown>{message.content}</MarkDown>
+                  {/* {message.content} */}
                 </span>
               </div>
             ))}

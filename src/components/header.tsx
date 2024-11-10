@@ -25,7 +25,7 @@ export default function Header() {
         <div className='flex items-center gap-4'>
           <ThemeToggle />
           {/* <a href='/sign-in'> */}
-          <Button
+          {/* <Button
             variant='outline'
             onClick={() => {
               openSignIn()
@@ -33,7 +33,7 @@ export default function Header() {
             className='gap-2'
           >
             Đăng nhập
-          </Button>
+          </Button> */}
           {/* </a> */}
         </div>
       </div>

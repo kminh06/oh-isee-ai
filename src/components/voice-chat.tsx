@@ -10,6 +10,15 @@ import {
 import { Mic } from 'lucide-react'
 import { Button } from './ui/button'
 
+const betaContent = (
+  <DialogHeader>
+    <DialogTitle>Tính năng cao cấp</DialogTitle>
+    <DialogDescription>
+      Tính năng này sẽ sớm ra mắt. Hãy quay lại sau để trải nghiệm.
+    </DialogDescription>
+  </DialogHeader>
+)
+
 const unauthenticatedContent = (
   <>
     <DialogHeader>
@@ -53,7 +62,7 @@ export default function VoiceChat({ isLoading }: VoiceChatProps) {
           <Mic className='h-5 w-5 ' />
         </button>
       </DialogTrigger>
-      <DialogContent>{authenticatedContent}</DialogContent>
+      <DialogContent>{betaContent}</DialogContent>
     </Dialog>
   )
 }

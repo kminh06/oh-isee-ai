@@ -1,9 +1,7 @@
 'use client'
 
 import { useChat } from 'ai/react'
-import { Input } from './ui/input'
-import { Button } from './ui/button'
-import { Loader, Send, ArrowUp, Mic } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
 import { ScrollArea } from './ui/scroll-area'
 import React, { useState, useEffect, useRef } from 'react'
 import {
@@ -17,6 +15,7 @@ import { Textarea } from './ui/textarea'
 import IncrementalWordRender from './incremental-words'
 import { isMobile } from 'react-device-detect'
 import MarkDown from 'react-markdown'
+import VoiceChat from './voice-chat'
 
 interface Message {
   content: string
@@ -44,7 +43,7 @@ export default function Chat() {
   }, [isLoading])
 
   return (
-    <Card className='col-span-1 w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow'>
+    <Card className='col-span-1 w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow-sm'>
       <CardHeader className=' hidden sm:block'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
       </CardHeader>
@@ -104,13 +103,7 @@ export default function Chat() {
           className='w-full  rounded-md relative flex gap-2'
           onSubmit={handleSubmit}
         >
-          <button
-            type='button'
-            disabled={isLoading}
-            className='absolute disabled:opacity-50 cursor-pointer left-4 mt-4'
-          >
-            <Mic className='h-5 w-5 ' />
-          </button>
+          <VoiceChat isLoading={isLoading} />
           <Textarea
             className='outline-none resize-none overflow-auto bg-transparent pl-12 pr-16 pt-4 pb-4 w-full'
             style={{

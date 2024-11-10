@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -221,7 +223,7 @@ export default function SecondRow() {
                 id='feedback'
                 name='feedback'
                 placeholder='Oh, i see! có thể làm gì để cải thiện?'
-                className='h-[150px]'
+                className='h-[120px]'
               />
             </div>
             <Button disabled={clicked} type='submit' className='w-full mt-2'>

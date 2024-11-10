@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -73,7 +75,7 @@ export default function SecondRow() {
   }
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+    <div className='grid grid-cols-1 grid-rows-1 sm:grid-cols-2 lg:grid-cols-1 gap-4'>
       <Card>
         <CardHeader>
           <CardTitle>Kết nối với huấn luyện viên</CardTitle>
@@ -221,7 +223,7 @@ export default function SecondRow() {
                 id='feedback'
                 name='feedback'
                 placeholder='Oh, i see! có thể làm gì để cải thiện?'
-                className='h-[150px]'
+                className='h-[120px]'
               />
             </div>
             <Button disabled={clicked} type='submit' className='w-full mt-2'>

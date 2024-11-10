@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: 'Oh, i see! - Your Mental Health Coach',
@@ -13,24 +20,26 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <head>
-        <link rel='shortcut icon' href='/logo-square.svg' type='svg' />
-        <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
-        />
-      </head>
-      <body
-        className={
-          'font-sans antialiased text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900/80'
-        }
-        suppressHydrationWarning={true}
-      >
-        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='en'>
+        <head>
+          <link rel='shortcut icon' href='/logo-square.svg' type='svg' />
+          <meta
+            name='viewport'
+            content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
+          />
+        </head>
+        <body
+          className={
+            'font-sans antialiased text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900/80'
+          }
+          suppressHydrationWarning={true}
+        >
+          <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

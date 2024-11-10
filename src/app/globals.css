@@ -15,3 +15,13 @@
   font-family: 'Roboto Mono';
   src: url('/fonts/RobotoMono.ttf') format('truetype');
 }
+
+ol {
+  list-style: decimal;
+  padding-left: 2rem;
+}
+
+li {
+  @apply my-2
+}
+

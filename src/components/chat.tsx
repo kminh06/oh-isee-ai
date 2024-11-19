@@ -201,9 +201,16 @@ export default function Chat() {
           </CardFooter>
         </>
       ) : (
-        <CardContent className='h-full px-0 sm:px-6'>
-          <VoiceChat />
-        </CardContent>
+        <>
+          <CardContent className='h-full px-0 sm:px-6'>
+            <VoiceChat />
+          </CardContent>
+          <CardFooter>
+            <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
+              *Oh, i see! Chatbot là một AI và có thể gây lỗi.
+            </p>
+          </CardFooter>
+        </>
       )}
     </Card>
   )

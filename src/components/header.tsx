@@ -4,11 +4,13 @@ import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
-import { useClerk } from '@clerk/nextjs'
+import { useClerk, UserButton, UserProfile } from '@clerk/nextjs'
+import { useAuth } from '@clerk/nextjs'
 
 export default function Header() {
   const { theme } = useTheme()
   const { openSignIn } = useClerk()
+  const { isSignedIn } = useAuth()
 
   return (
     <header className='border-b dark:border-gray-800 px-4 sm:px-8'>
@@ -35,6 +37,13 @@ export default function Header() {
             Đăng nhập
           </Button> */}
           {/* </a> */}
+          {isSignedIn ? (
+            <UserButton />
+          ) : (
+            <a href='/sign-in'>
+              <Button variant={'outline'}>Đăng nhập</Button>
+            </a>
+          )}
         </div>
       </div>
     </header>

@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'Oh, i see! - Your Mental Health Coach',
@@ -37,6 +38,7 @@ export default function RootLayout({
         >
           <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
             {children}
+            <Analytics />
           </ThemeProvider>
         </body>
       </html>

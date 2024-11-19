@@ -64,7 +64,7 @@ export default function Chat() {
           defaultValue='text'
           value={tab}
           onValueChange={setTab}
-          className='relative top-[-10] right-[-6]'
+          className='relative top-[-10px] right-[-6px]'
         >
           <TabsList>
             <TabsTrigger value='text'>Text</TabsTrigger>

@@ -64,14 +64,19 @@ export default function SecondRow() {
 
     const formData = new FormData(form)
     console.log(formData)
-    const response = await fetch(url, {
-      method: 'POST',
-      body: formData,
-    })
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      })
 
-    alert('Cảm ơn bạn đã gửi!')
+      alert('Cảm ơn bạn đã gửi!')
+      form.reset()
+    } catch (error) {
+      console.log(error)
+    }
+
     setClicked(false)
-    form.reset()
   }
 
   return (
@@ -81,7 +86,7 @@ export default function SecondRow() {
           <CardTitle>Kết nối với huấn luyện viên</CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className='w-full'>
+          <div className='w-full'>
             <div className='flex space-x-4 pb-4 overflow-x-auto'>
               {coaches.map((coach) => (
                 <div
@@ -192,43 +197,78 @@ export default function SecondRow() {
                 </div>
               ))}
             </div>
-          </ScrollArea>
+          </div>
         </CardContent>
       </Card>
       <Card>
-        <CardHeader>
-          <CardTitle>Góp ý của bạn</CardTitle>
+        <CardHeader className='pb-4'>
+          <CardTitle>Đăng ký làm huấn luyện viên</CardTitle>
         </CardHeader>
         <CardContent>
           <form
             onSubmit={(e) => {
               e.preventDefault()
               handleSubmitForm(
-                'feedback-form',
+                'signup-form',
                 process.env.NEXT_PUBLIC_SCRIPT_URL_FEEDBACK
               )
             }}
-            className='space-y-4'
-            id='feedback-form'
+            className='space-y-3'
+            id='signup-form'
           >
-            <div className=''>
+            <div className='space-y-1'>
+              <Label htmlFor='name'>Tên*</Label>
+              <Input id='name' name='name' placeholder='Tên' required />
+            </div>
+            <div className='space-y-1'>
+              <Label htmlFor='email'>Email*</Label>
               <Input
-                id='time'
-                name='time'
-                // type='datetime-local'
-                className='hidden'
-              ></Input>
-              {/* <Label htmlFor='feedback'>Góp ý của bạn</Label> */}
-              <Textarea
-                id='feedback'
-                name='feedback'
-                placeholder='Oh, i see! có thể làm gì để cải thiện?'
-                className='h-[120px]'
+                id='email'
+                type='email'
+                name='email'
+                placeholder='m@example.com'
+                required
               />
             </div>
-            <Button disabled={clicked} type='submit' className='w-full mt-2'>
-              Gửi
-            </Button>
+            <div className='space-y-1'>
+              <Label htmlFor='phone'>Số điện thoại*</Label>
+              <Input
+                id='phone'
+                type='tel'
+                name='phone'
+                placeholder='09XX-XXX-XXX'
+                required
+              />
+            </div>
+            {/* <div className='space-y-1'>
+              <Label htmlFor='specialty'>Chuyên môn*</Label>
+              <Input
+                id='specialty'
+                name='specialty'
+                placeholder='Chuyên môn'
+                required
+              />
+            </div>
+            <div className='space-y-1'>
+              <Label htmlFor='experience'>Kinh nghiệm*</Label>
+              <Textarea
+                id='experience'
+                name='experience'
+                placeholder='Kinh nghiệm của bạn'
+                required
+              />
+            </div> */}
+            <Input
+              id='time'
+              name='time'
+              // type='datetime-local'
+              className='hidden'
+            ></Input>
+            <span className=''>
+              <Button disabled={clicked} type='submit' className='w-full mt-6'>
+                Đăng ký
+              </Button>
+            </span>
           </form>
         </CardContent>
       </Card>

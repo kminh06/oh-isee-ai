@@ -1,14 +1,11 @@
 import Chat from '@/components/chat'
 import Header from '@/components/header'
 import SecondRow from '@/components/second-row'
-import { auth, currentUser } from '@clerk/nextjs/server'
+// import { auth, currentUser } from '@clerk/nextjs/server'
 
 const description = `Oh, i see! là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn phá vỡ giới hạn tư duy và tìm thấy sự kết nối sâu sắc với bản thân và thế giới xung quanh. Với sự hướng dẫn từ các huấn luyện viên chuyên nghiệp, Oh, i see! hỗ trợ bạn quản lý căng thẳng, cải thiện mối quan hệ, và xây dựng lối sống hạnh phúc. Thử nghiệm phương pháp độc đáo này để trải nghiệm sự thay đổi tích cực trong cuộc sống, và đừng quên giới thiệu cho bạn bè để cùng nhau phát triển!`
 
-export default async function Page() {
-  const { userId } = await auth()
-  const user = await currentUser()
-
+export default function Page() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />

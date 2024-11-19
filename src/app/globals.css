@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
 }
 @font-face {
@@ -22,6 +23,44 @@ ol {
 }
 
 li {
-  @apply my-2
+  @apply my-2;
 }
 
+:root {
+  --lk-va-bar-width: 72px;
+  --lk-control-bar-height: unset;
+}
+
+.lk-audio-bar {
+  width: 72px;
+  background-color: black !important;
+}
+
+.lk-audio-bar-visualizer {
+  &[data-lk-va-state='speaking'] > .lk-audio-bar,
+  & > .lk-audio-bar.lk-highlighted,
+  & > [data-lk-highlighted='true'] {
+    @apply bg-gray-900  !important;
+  }
+
+  & > [data-lk-highlighted='false'] {
+    @apply bg-gray-900/10 !important;
+  }
+}
+
+.lk-agent-control-bar > .lk-button-group > .lk-button {
+  @apply h-[36px] hover:bg-gray-300 text-gray-800 bg-gray-200 border-0 transition-all !important;
+}
+
+.lk-button-menu {
+  @apply h-[36px] hover:bg-gray-300 text-gray-800 bg-gray-200 border-0 transition-all !important;
+}
+
+.lk-agent-control-bar {
+  @apply border-t-0 p-0 h-min mr-4 !important;
+  /* background-color: transparent !important; */
+}
+
+.lk-disconnect-button {
+  @apply h-[36px] hover:bg-red-600 text-[white] bg-red-700 border-0 transition-all !important;
+}

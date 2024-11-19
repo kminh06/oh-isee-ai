@@ -25,6 +25,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from './ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const betaContent = (
   <DialogHeader>
@@ -40,6 +41,7 @@ export default function Chat() {
     useChat()
   const bottom = useRef<HTMLDivElement>(null)
   const [isVoiceChatOpen, setIsVoiceChatOpen] = useState(false)
+  const [tab, setTab] = useState('text')
 
   useEffect(() => {
     if (messages.length === 0) return
@@ -55,11 +57,22 @@ export default function Chat() {
   }, [isLoading])
 
   return (
-    <Card className='col-span-1 w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow-sm'>
-      <CardHeader className=' hidden sm:block'>
+    <Card className='col-span-1 flex flex-col w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow-sm h-full'>
+      <CardHeader className='flex p-0 pt-2 sm:p-6 flex-row justify-between w-full'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
+        <Tabs
+          defaultValue='text'
+          value={tab}
+          onValueChange={setTab}
+          className='relative top-[-10] right-[-6]'
+        >
+          <TabsList>
+            <TabsTrigger value='text'>Text</TabsTrigger>
+            <TabsTrigger value='voice'>Voice</TabsTrigger>
+          </TabsList>
+        </Tabs>
       </CardHeader>
-      {!isVoiceChatOpen ? (
+      {tab === 'text' ? (
         <>
           <CardContent className='p-0 sm:pl-4'>
             <div className='flex w-full relative'>
@@ -148,10 +161,10 @@ export default function Chat() {
               <button
                 type='button'
                 disabled={isLoading}
-                className='absolute text-gray-800 disabled:opacity-50 cursor-pointer left-4 mt-4'
+                className='absolute text-gray-800 dark:text-gray-200 disabled:opacity-50 cursor-pointer left-4 mt-4'
                 onClick={(e) => {
                   e.preventDefault()
-                  setIsVoiceChatOpen(true)
+                  setTab('voice')
                 }}
               >
                 <Mic className='h-5 w-5 ' />
@@ -188,7 +201,9 @@ export default function Chat() {
           </CardFooter>
         </>
       ) : (
-        <VoiceChat />
+        <CardContent className='h-full px-0 sm:px-6'>
+          <VoiceChat />
+        </CardContent>
       )}
     </Card>
   )

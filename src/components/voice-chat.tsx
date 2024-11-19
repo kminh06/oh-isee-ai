@@ -17,6 +17,8 @@ import { NoAgentNotification } from '@/components/NoAgentNotification'
 import { CloseIcon } from '@/components/CloseIcon'
 import { useKrispNoiseFilter } from '@livekit/components-react/krisp'
 import '@livekit/components-styles'
+import { MessageSquare, Mic, Phone } from 'lucide-react'
+import { Button } from './ui/button'
 
 export default function VoiceChat() {
   const [connectionDetails, updateConnectionDetails] = useState<
@@ -38,7 +40,7 @@ export default function VoiceChat() {
   return (
     <div
       data-lk-theme='default'
-      className='h-full w-full grid content-center bg-[var(--lk-bg)]'
+      className='h-full w-full flex p-4 flex-col items-center justify-center bg-transparent'
     >
       <LiveKitRoom
         token={connectionDetails?.participantToken}
@@ -50,6 +52,7 @@ export default function VoiceChat() {
         onDisconnected={() => {
           updateConnectionDetails(undefined)
         }}
+        style={{ '--lk-bg': 'white' } as React.CSSProperties}
         className='grid grid-rows-[2fr_1fr] items-center'
       >
         <SimpleVoiceAssistant onStateChange={setAgentState} />
@@ -72,13 +75,13 @@ function SimpleVoiceAssistant(props: {
     props.onStateChange(state)
   }, [props, state])
   return (
-    <div className='h-[300px] w-full mx-auto'>
+    <div className='h-40 max-w-xs w-full mx-auto'>
       <BarVisualizer
         state={state}
         barCount={5}
         trackRef={audioTrack}
-        className='agent-visualizer bg-black'
-        options={{ minHeight: 24 }}
+        className='agent-visualizer'
+        options={{ minHeight: 28 }}
       />
     </div>
   )
@@ -98,7 +101,7 @@ function ControlBar(props: {
   }, [])
 
   return (
-    <div className='relative h-[100px]'>
+    <div className='relative h-auto '>
       <AnimatePresence>
         {props.agentState === 'disconnected' && (
           <motion.button
@@ -106,10 +109,11 @@ function ControlBar(props: {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, top: '-10px' }}
             transition={{ duration: 1, ease: [0.09, 1.04, 0.245, 1.055] }}
-            className='uppercase absolute left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white rounded-md'
+            className='uppercase mx-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-all font-sans text-white rounded-md flex items-center gap-1 pl-3'
             onClick={() => props.onConnectButtonClicked()}
           >
-            Start a conversation
+            <Mic className='h-4 opacity-60' />
+            <span className=''>Bắt đầu trò chuyện</span>
           </motion.button>
         )}
       </AnimatePresence>

@@ -81,7 +81,7 @@ export default function SecondRow() {
           <CardTitle>Kết nối với huấn luyện viên</CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className='w-full'>
+          <div className='w-full'>
             <div className='flex space-x-4 pb-4 overflow-x-auto'>
               {coaches.map((coach) => (
                 <div
@@ -192,7 +192,7 @@ export default function SecondRow() {
                 </div>
               ))}
             </div>
-          </ScrollArea>
+          </div>
         </CardContent>
       </Card>
       <Card>

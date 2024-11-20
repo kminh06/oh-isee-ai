@@ -14,6 +14,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useSignIn } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import data from '@/translations.json'
+import { ClerkAPIError } from '@clerk/types'
+import { isClerkAPIResponseError } from '@clerk/nextjs/errors'
+
+interface Errors {
+  [key: string]: {
+    [key: string]: string
+  }
+}
+
+const errData: Errors = data.errors
 
 export function LoginForm() {
   const { isLoaded, signIn, setActive } = useSignIn()
@@ -21,6 +32,7 @@ export function LoginForm() {
   const [password, setPassword] = useState('')
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState<ClerkAPIError[]>()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -49,7 +61,7 @@ export function LoginForm() {
       }
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
+      if (isClerkAPIResponseError(err)) setErrors(err.errors)
       console.error(JSON.stringify(err, null, 2))
     }
 
@@ -96,7 +108,16 @@ export function LoginForm() {
                 required
               />
             </div>
-            <Button disabled={loading} type='submit' className='w-full'>
+            {errors && (
+              <ul>
+                {errors.map((el, index) => (
+                  <li className='text-red-600 text-sm my-0' key={index}>
+                    {errData[el.code] ? errData[el.code].vi : el.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <Button disabled={loading} type='submit' className={'w-full mt-2'}>
               Đăng nhập
             </Button>
             {/* <Button type='button' variant='outline' className='w-full'>

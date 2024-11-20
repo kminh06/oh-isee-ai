@@ -25,7 +25,7 @@ export default function Header() {
           />
         </Link>
         <div className='flex items-center gap-4'>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           {/* <a href='/sign-in'> */}
           {/* <Button
             variant='outline'

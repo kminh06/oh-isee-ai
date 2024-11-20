@@ -158,14 +158,14 @@ function ControlBar(props: {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className='sm:max-w-[425px]'>
           <DialogHeader>
-            <DialogTitle>Đăng nhập yêu cầu</DialogTitle>
+            <DialogTitle>Đăng nhập để dùng Voice Chat</DialogTitle>
             <DialogDescription>
-              Bạn cần đăng nhập để gửi góp ý. Vui lòng đăng nhập để tiếp tục.
+              Vui lòng đăng nhập để tiếp tục.
             </DialogDescription>
           </DialogHeader>
           <Button
             variant='default'
-            onClick={() => (window.location.href = '/login')}
+            onClick={() => (window.location.href = '/sign-in')}
           >
             Đăng nhập
           </Button>

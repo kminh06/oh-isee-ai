@@ -1,4 +1,5 @@
 import Chat from '@/components/chat'
+import Feedback from '@/components/feedback'
 import Header from '@/components/header'
 import SecondRow from '@/components/second-row'
 // import { auth, currentUser } from '@clerk/nextjs/server'
@@ -22,6 +23,9 @@ export default function Page() {
       </main>
       <footer className='w-full relative dark:bg-slate-950 border-t text-xs text-slate-800 dark:text-sky-500 text-center border-slate-200 dark:border-slate-800 p-8'>
         &copy; 2024 Oh, i see!. All rights reserved.
+        <span className='absolute right-4 bottom-5'>
+          <Feedback />
+        </span>
       </footer>
     </div>
   )

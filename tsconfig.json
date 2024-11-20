@@ -35,7 +35,7 @@
     ".next/types/**/*.ts",
     "src/components/second-row.jsx",
     "src/components/incremental-words.jsx"
-  ],
+, "src/components/feedback.jsx"  ],
   "exclude": [
     "node_modules"
   ]

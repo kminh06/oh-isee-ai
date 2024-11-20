@@ -60,10 +60,11 @@ export default function SecondRow() {
     setClicked(true)
     const form = document.forms[id]
     const time = new Date().toLocaleString()
-    document.getElementById('time').value = time
+    form.querySelector('#time').value = time
 
     const formData = new FormData(form)
     console.log(formData)
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -210,7 +211,7 @@ export default function SecondRow() {
               e.preventDefault()
               handleSubmitForm(
                 'signup-form',
-                process.env.NEXT_PUBLIC_SCRIPT_URL_FEEDBACK
+                process.env.NEXT_PUBLIC_SCRIPT_URL_COACH_SIGNUP
               )
             }}
             className='space-y-3'
@@ -258,12 +259,7 @@ export default function SecondRow() {
                 required
               />
             </div> */}
-            <Input
-              id='time'
-              name='time'
-              // type='datetime-local'
-              className='hidden'
-            ></Input>
+            <Input id='time' name='time' className='hidden'></Input>
             <span className=''>
               <Button disabled={clicked} type='submit' className='w-full mt-6'>
                 Đăng ký

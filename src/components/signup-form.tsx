@@ -14,6 +14,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useSignUp } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import data from '@/translations.json'
+import { ClerkAPIError } from '@clerk/types'
+import { isClerkAPIResponseError } from '@clerk/nextjs/errors'
+
+interface Errors {
+  [key: string]: {
+    [key: string]: string
+  }
+}
+
+const errData: Errors = data.errors
 
 export function SignupForm() {
   const { isLoaded, signUp, setActive } = useSignUp()
@@ -24,6 +35,7 @@ export function SignupForm() {
   const [verifying, setVerifying] = useState(false)
   const [code, setCode] = useState('')
   const router = useRouter()
+  const [errors, setErrors] = useState<ClerkAPIError[]>()
 
   const [loading, setLoading] = useState(false)
 
@@ -53,6 +65,7 @@ export function SignupForm() {
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
+      if (isClerkAPIResponseError(err)) setErrors(err.errors)
       console.error(JSON.stringify(err, null, 2))
     }
 
@@ -134,7 +147,7 @@ export function SignupForm() {
           <div className='grid gap-4'>
             <div className='grid grid-cols-2 gap-4'>
               <div className='grid gap-2'>
-                <Label htmlFor='firstName'>Tên</Label>
+                <Label htmlFor='firstName'>Tên*</Label>
                 <Input
                   id='firstName'
                   value={firstName}
@@ -143,7 +156,7 @@ export function SignupForm() {
                 />
               </div>
               <div className='grid gap-2'>
-                <Label htmlFor='lastName'>Họ</Label>
+                <Label htmlFor='lastName'>Họ*</Label>
                 <Input
                   id='lastName'
                   value={lastName}
@@ -153,7 +166,7 @@ export function SignupForm() {
               </div>
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='email'>Email</Label>
+              <Label htmlFor='email'>Email*</Label>
               <Input
                 id='email'
                 type='email'
@@ -164,7 +177,7 @@ export function SignupForm() {
               />
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='password'>Mật khẩu</Label>
+              <Label htmlFor='password'>Mật khẩu*</Label>
               <Input
                 id='password'
                 value={password}
@@ -173,7 +186,16 @@ export function SignupForm() {
                 required
               />
             </div>
-            <Button disabled={loading} type='submit' className='w-full'>
+            {errors && (
+              <ul>
+                {errors.map((el, index) => (
+                  <li className='text-red-600 text-sm my-0' key={index}>
+                    {errData[el.code] ? errData[el.code].vi : el.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <Button disabled={loading} type='submit' className='w-full mt-2'>
               Đăng ký
             </Button>
           </div>

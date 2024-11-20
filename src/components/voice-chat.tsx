@@ -19,6 +19,19 @@ import { useKrispNoiseFilter } from '@livekit/components-react/krisp'
 import '@livekit/components-styles'
 import { MessageSquare, Mic, Phone } from 'lucide-react'
 import { Button } from './ui/button'
+import { useAuth } from '@clerk/nextjs'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from './ui/textarea'
 
 export default function VoiceChat() {
   const [connectionDetails, updateConnectionDetails] = useState<
@@ -91,6 +104,8 @@ function ControlBar(props: {
   onConnectButtonClicked: () => void
   agentState: AgentState
 }) {
+  const { isSignedIn } = useAuth()
+  const [open, setOpen] = useState(false)
   /**
    * Use Krisp background noise reduction when available.
    * Note: This is only available on Scale plan, see {@link https://livekit.io/pricing | LiveKit Pricing} for more details.
@@ -110,7 +125,13 @@ function ControlBar(props: {
             exit={{ opacity: 0, top: '-10px' }}
             transition={{ duration: 1, ease: [0.09, 1.04, 0.245, 1.055] }}
             className='uppercase mx-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-all font-sans text-white rounded-md flex items-center gap-1 pl-3'
-            onClick={() => props.onConnectButtonClicked()}
+            onClick={() => {
+              if (isSignedIn) {
+                props.onConnectButtonClicked()
+              } else {
+                setOpen(true)
+              }
+            }}
           >
             <Mic className='h-4 opacity-60' />
             <span className=''>Bắt đầu trò chuyện</span>
@@ -134,6 +155,22 @@ function ControlBar(props: {
             </motion.div>
           )}
       </AnimatePresence>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className='sm:max-w-[425px]'>
+          <DialogHeader>
+            <DialogTitle>Đăng nhập yêu cầu</DialogTitle>
+            <DialogDescription>
+              Bạn cần đăng nhập để gửi góp ý. Vui lòng đăng nhập để tiếp tục.
+            </DialogDescription>
+          </DialogHeader>
+          <Button
+            variant='default'
+            onClick={() => (window.location.href = '/login')}
+          >
+            Đăng nhập
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

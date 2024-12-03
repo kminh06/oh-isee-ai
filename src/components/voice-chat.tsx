@@ -176,6 +176,7 @@ function ControlBar(props: {
         defaultValue='google'
         value={props.tts}
         onValueChange={props.setTTS}
+        className='mx-auto mt-12 flex justify-center'
       >
         <TabsList>
           <TabsTrigger value='google'>Google</TabsTrigger>

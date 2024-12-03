@@ -17,7 +17,7 @@ import { NoAgentNotification } from '@/components/NoAgentNotification'
 import { CloseIcon } from '@/components/CloseIcon'
 import { useKrispNoiseFilter } from '@livekit/components-react/krisp'
 import '@livekit/components-styles'
-import { MessageSquare, Mic, Phone } from 'lucide-react'
+import { Mic } from 'lucide-react'
 import { Button } from './ui/button'
 import { useAuth } from '@clerk/nextjs'
 import {
@@ -29,15 +29,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from './ui/textarea'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export default function VoiceChat() {
   const [connectionDetails, updateConnectionDetails] = useState<
     ConnectionDetails | undefined
   >(undefined)
   const [agentState, setAgentState] = useState<AgentState>('disconnected')
+  const [tts, setTTS] = useState('google')
+
+  console.log(tts)
 
   const onConnectButtonClicked = useCallback(async () => {
     const url = new URL(
@@ -45,7 +46,15 @@ export default function VoiceChat() {
         '/api/connection-details',
       window.location.origin
     )
-    const response = await fetch(url.toString())
+    const response = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tts_model: tts,
+      }),
+    })
     const connectionDetailsData = await response.json()
     updateConnectionDetails(connectionDetailsData)
   }, [])
@@ -72,6 +81,8 @@ export default function VoiceChat() {
         <ControlBar
           onConnectButtonClicked={onConnectButtonClicked}
           agentState={agentState}
+          tts={tts}
+          setTTS={setTTS}
         />
         <RoomAudioRenderer />
         <NoAgentNotification state={agentState} />
@@ -103,6 +114,8 @@ function SimpleVoiceAssistant(props: {
 function ControlBar(props: {
   onConnectButtonClicked: () => void
   agentState: AgentState
+  tts: string
+  setTTS: (tts: string) => void
 }) {
   const { isSignedIn } = useAuth()
   const [open, setOpen] = useState(false)
@@ -155,6 +168,16 @@ function ControlBar(props: {
             </motion.div>
           )}
       </AnimatePresence>
+      <Tabs value={props.tts}>
+        <TabsList>
+          <TabsTrigger value='google' onClick={() => props.setTTS('google')}>
+            Google
+          </TabsTrigger>
+          <TabsTrigger value='openai' onClick={() => props.setTTS('openai')}>
+            OpenAI
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className='sm:max-w-[425px]'>
           <DialogHeader>

@@ -12,10 +12,13 @@ export type ConnectionDetails = {
   participantToken: string
 }
 
-export async function GET() {
+export async function POST(request: Request) {
+  // get request body
+  const body = await request.json()
+
   try {
     // Generate participant token
-    const participantIdentity = `voice_assistant_user_${Math.round(
+    const participantIdentity = `${body.tts_model}_user_${Math.round(
       Math.random() * 10_000
     )}`
     const participantToken = await createParticipantToken(

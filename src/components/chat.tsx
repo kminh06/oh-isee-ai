@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from './ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import Feedback from './feedback'
 
 const betaContent = (
   <DialogHeader>
@@ -60,17 +61,20 @@ export default function Chat() {
     <Card className='col-span-1 flex flex-col w-full self-center sm:mx-auto border-0 sm:border shadow-none sm:shadow-sm h-full'>
       <CardHeader className='flex p-0 pt-2 sm:p-6 flex-row justify-between w-full'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
-        <Tabs
-          defaultValue='text'
-          value={tab}
-          onValueChange={setTab}
-          className='relative top-[-10px] right-[-6px]'
-        >
-          <TabsList>
-            <TabsTrigger value='text'>Text</TabsTrigger>
-            <TabsTrigger value='voice'>Voice</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className='flex gap-2 flex-row relative top-[-10px] right-[-6px]'>
+          <Feedback />
+          <Tabs
+            defaultValue='text'
+            value={tab}
+            onValueChange={setTab}
+            className=''
+          >
+            <TabsList>
+              <TabsTrigger value='text'>Text</TabsTrigger>
+              <TabsTrigger value='voice'>Voice</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </CardHeader>
       {tab === 'text' ? (
         <>
@@ -127,37 +131,11 @@ export default function Chat() {
               </ScrollArea>
             </div>
           </CardContent>
-          <CardFooter className='pb-4 px-0 sm:px-4 pt-4 flex flex-col'>
+          <CardFooter className='pb-4 px-0 sm:px-4 pt-4 flex flex-col relative'>
             <form
               className='w-full  rounded-md relative flex gap-2'
               onSubmit={handleSubmit}
             >
-              {/* <Dialog>
-            <DialogTrigger asChild>
-              <button
-                type='button'
-                disabled={isLoading}
-                className='absolute text-gray-800 disabled:opacity-50 cursor-pointer left-4 mt-4'
-              >
-                <Mic className='h-5 w-5 ' />
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Tính năng cao cấp</DialogTitle>
-                <DialogDescription>
-                  Bắt đầu trò chuyện bằng giọng nói ngay bây giờ. Bấm vào biểu
-                  tượng mic để bắt đầu.
-                </DialogDescription>
-              </DialogHeader>
-              <div className='flex justify-center'>
-                <Button>
-                  <Phone className='h-4 opacity-50' />
-                  Bắt đầu cuộc gọi
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog> */}
               <button
                 type='button'
                 disabled={isLoading}

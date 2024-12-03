@@ -38,9 +38,13 @@ export default function VoiceChat() {
   const [agentState, setAgentState] = useState<AgentState>('disconnected')
   const [tts, setTTS] = useState('google')
 
-  console.log(tts)
+  useEffect(() => {
+    console.log(tts)
+  }, [tts])
 
-  const onConnectButtonClicked = useCallback(async () => {
+  // console.log(tts)
+
+  const onConnectButtonClicked = useCallback(async (tts: string) => {
     const url = new URL(
       process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ??
         '/api/connection-details',
@@ -79,7 +83,7 @@ export default function VoiceChat() {
       >
         <SimpleVoiceAssistant onStateChange={setAgentState} />
         <ControlBar
-          onConnectButtonClicked={onConnectButtonClicked}
+          onConnectButtonClicked={() => onConnectButtonClicked(tts)}
           agentState={agentState}
           tts={tts}
           setTTS={setTTS}
@@ -168,14 +172,14 @@ function ControlBar(props: {
             </motion.div>
           )}
       </AnimatePresence>
-      <Tabs value={props.tts}>
+      <Tabs
+        defaultValue='google'
+        value={props.tts}
+        onValueChange={props.setTTS}
+      >
         <TabsList>
-          <TabsTrigger value='google' onClick={() => props.setTTS('google')}>
-            Google
-          </TabsTrigger>
-          <TabsTrigger value='openai' onClick={() => props.setTTS('openai')}>
-            OpenAI
-          </TabsTrigger>
+          <TabsTrigger value='google'>Google</TabsTrigger>
+          <TabsTrigger value='openai'>OpenAI</TabsTrigger>
         </TabsList>
       </Tabs>
       <Dialog open={open} onOpenChange={setOpen}>

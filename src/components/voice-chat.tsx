@@ -38,12 +38,6 @@ export default function VoiceChat() {
   const [agentState, setAgentState] = useState<AgentState>('disconnected')
   const [tts, setTTS] = useState('google')
 
-  useEffect(() => {
-    console.log(tts)
-  }, [tts])
-
-  // console.log(tts)
-
   const onConnectButtonClicked = useCallback(async (tts: string) => {
     const url = new URL(
       process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ??
@@ -56,7 +50,7 @@ export default function VoiceChat() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        tts_model: tts,
+        tts_model: 'google',
       }),
     })
     const connectionDetailsData = await response.json()
@@ -172,7 +166,7 @@ function ControlBar(props: {
             </motion.div>
           )}
       </AnimatePresence>
-      <Tabs
+      {/* <Tabs
         defaultValue='google'
         value={props.tts}
         onValueChange={props.setTTS}
@@ -182,7 +176,7 @@ function ControlBar(props: {
           <TabsTrigger value='google'>Google</TabsTrigger>
           <TabsTrigger value='openai'>OpenAI</TabsTrigger>
         </TabsList>
-      </Tabs>
+      </Tabs> */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className='sm:max-w-[425px]'>
           <DialogHeader>

@@ -62,7 +62,7 @@ export default function Chat() {
       <CardHeader className='flex p-0 pt-2 sm:p-6 flex-row justify-between w-full'>
         <CardTitle>Chat với Oh, i see!</CardTitle>
         <div className='flex gap-2 flex-row relative top-[-10px] right-[-6px]'>
-          <Feedback />
+          {/* <Feedback /> */}
           <Tabs
             defaultValue='text'
             value={tab}
@@ -176,6 +176,9 @@ export default function Chat() {
             <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
               *Oh, i see! Chatbot là một AI và có thể gây lỗi.
             </p>
+            <div className='absolute right-1 bottom-1'>
+              <Feedback />
+            </div>
           </CardFooter>
         </>
       ) : (
@@ -183,10 +186,13 @@ export default function Chat() {
           <CardContent className='h-full px-0 sm:px-6'>
             <VoiceChat />
           </CardContent>
-          <CardFooter>
+          <CardFooter className='relative'>
             <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
               *Oh, i see! Chatbot là một AI và có thể gây lỗi.
             </p>
+            <div className='absolute right-1 bottom-2'>
+              <Feedback />
+            </div>
           </CardFooter>
         </>
       )}

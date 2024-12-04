@@ -45,7 +45,7 @@ export default function Feedback() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='ghost'>Góp ý</Button>
+        <Button variant='link'>Góp ý</Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>

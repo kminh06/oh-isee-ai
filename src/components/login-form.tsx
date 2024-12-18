@@ -94,7 +94,7 @@ export function LoginForm() {
               <div className='flex items-center'>
                 <Label htmlFor='password'>Mật khẩu</Label>
                 <Link
-                  href='#'
+                  href='/forgot-password'
                   className='ml-auto inline-block text-sm underline'
                 >
                   Quên mật khẩu?

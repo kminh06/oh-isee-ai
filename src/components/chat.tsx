@@ -38,8 +38,13 @@ const betaContent = (
 )
 
 export default function Chat() {
+  const [id, setId] = useState(Math.random().toString(36).substring(2, 9))
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat()
+    useChat({
+      body: {
+        id: id,
+      },
+    })
   const bottom = useRef<HTMLDivElement>(null)
   const [isVoiceChatOpen, setIsVoiceChatOpen] = useState(false)
   const [tab, setTab] = useState('text')

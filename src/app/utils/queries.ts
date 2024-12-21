@@ -14,7 +14,7 @@ export async function saveChat({
   userId,
 }: {
   id: string
-  messages: any
+  messages: string | any[]
   userId: string
 }) {
   try {

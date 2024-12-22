@@ -27,6 +27,7 @@ import {
 import { Button } from './ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Feedback from './feedback'
+import Reviews from './reviews'
 
 const betaContent = (
   <DialogHeader>
@@ -181,9 +182,10 @@ export default function Chat() {
             <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
               *Oh, i see! Chatbot là một AI và có thể gây lỗi.
             </p>
-            <div className='absolute right-1 bottom-1'>
+            <Reviews />
+            {/* <div className='absolute right-1 bottom-1'>
               <Feedback />
-            </div>
+            </div> */}
           </CardFooter>
         </>
       ) : (

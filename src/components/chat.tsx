@@ -197,9 +197,7 @@ export default function Chat() {
             <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
               *Oh, i see! Chatbot là một AI và có thể gây lỗi.
             </p>
-            <div className='absolute right-1 bottom-2'>
-              <Feedback />
-            </div>
+            <Reviews />
           </CardFooter>
         </>
       )}

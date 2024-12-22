@@ -3,6 +3,7 @@ import Feedback from '@/components/feedback'
 import Header from '@/components/header'
 import SecondRow from '@/components/second-row'
 // import { auth, currentUser } from '@clerk/nextjs/server'
+import { Toaster } from '@/components/ui/toaster'
 
 const description = `Oh, i see! là một nền tảng huấn luyện tinh thần và cảm xúc, giúp bạn phá vỡ giới hạn tư duy và tìm thấy sự kết nối sâu sắc với bản thân và thế giới xung quanh. Với sự hướng dẫn từ các huấn luyện viên chuyên nghiệp, Oh, i see! hỗ trợ bạn quản lý căng thẳng, cải thiện mối quan hệ, và xây dựng lối sống hạnh phúc. Thử nghiệm phương pháp độc đáo này để trải nghiệm sự thay đổi tích cực trong cuộc sống, và đừng quên giới thiệu cho bạn bè để cùng nhau phát triển!`
 
@@ -27,6 +28,7 @@ export default function Page() {
           <Feedback />
         </span>
       </footer>
+      <Toaster />
     </div>
   )
 }

@@ -193,7 +193,7 @@ export default function Chat() {
           <CardContent className='h-full px-0 sm:px-6'>
             <VoiceChat />
           </CardContent>
-          <CardFooter className='relative'>
+          <CardFooter className='relative flex flex-col'>
             <p className='text-xs text-yellow-700 dark:text-yellow-600 text-center w-full mt-2'>
               *Oh, i see! Chatbot là một AI và có thể gây lỗi.
             </p>

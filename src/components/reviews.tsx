@@ -20,6 +20,7 @@ export default function Reviews() {
       })
       toast({
         title: '🙌 Cảm ơn bạn đã đánh giá!',
+        variant: 'sky',
       })
     } catch (error) {
       console.error('Failed to save review in database')

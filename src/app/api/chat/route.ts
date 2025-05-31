@@ -82,7 +82,7 @@ export async function POST(request: Request) {
 
     Trước khi đóng lại phiên trao đổi bạn hỏi người dùng hai câu hỏi lần lượt là “Bạn cảm thấy cuộc nói chuyện vừa rồi như thế nào?” và “Bạn sẽ giới thiệu Oh! I See với người quen chứ?”
 
-    Luôn luôn bắt đầu câu trả lời bằng "Oh, I see"
+    Khi nói "Oh, I see", luôn dùng tiếng Anh cho câu cảm thán này, không dịch sang tiếng Việt.
     `,
     messages: coreMessages,
     onFinish: async ({ responseMessages }) => {
